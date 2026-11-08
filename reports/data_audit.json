@@ -1,0 +1,43 @@
+{
+  "train_documents": 15594,
+  "train_annotations": 144293,
+  "test_documents": 5,
+  "annotation_missing": {
+    "id": 0,
+    "discourse_id": 0,
+    "discourse_start": 0,
+    "discourse_end": 0,
+    "discourse_text": 0,
+    "discourse_type": 0,
+    "discourse_type_num": 0,
+    "predictionstring": 0
+  },
+  "duplicate_annotation_rows": 0,
+  "duplicate_text_extra_documents": 1,
+  "overlapping_words": 1258,
+  "invalid_spans": 0,
+  "conflicting_class_word_assignments": 993,
+  "char_text_mismatches_after_strip": 13719,
+  "candidate_count": 339897,
+  "total_words": 6569098,
+  "unlabeled_words": 305458,
+  "class_counts": {
+    "Claim": 50208,
+    "Evidence": 45702,
+    "Position": 15419,
+    "Concluding Statement": 13505,
+    "Lead": 9305,
+    "Counterclaim": 5817,
+    "Rebuttal": 4337
+  },
+  "document_word_quantiles": {
+    "0.0": 144.0,
+    "0.25": 278.0,
+    "0.5": 384.0,
+    "0.75": 520.0,
+    "0.95": 796.0,
+    "1.0": 1656.0
+  },
+  "train_csv_sha256": "c671e35b73cd5d305d04f2de5212f80d3d9ba0a7dda28df2c3e42c3b7f882898",
+  "text_manifest_sha256": "f4941287726b4dad628c6d169fad584f7d47d8cf16304a239a64157c327894cf"
+}

@@ -1,0 +1,24 @@
+{
+  "data_dir": "feedback-prize-2021",
+  "output_dir": "reports",
+  "artifacts_dir": "artifacts",
+  "seed": 42,
+  "n_splits": 3,
+  "max_features": 40000,
+  "min_df": 3,
+  "ngram_range": [
+    1,
+    2
+  ],
+  "alpha": 1e-05,
+  "max_iter": 60,
+  "tol": 0.001,
+  "structure_weight": 0.5,
+  "bootstrap_iterations": 1000,
+  "experiments": [
+    "dummy",
+    "lexical",
+    "lexical_position",
+    "lexical_position_balanced"
+  ]
+}

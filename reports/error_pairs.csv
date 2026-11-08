@@ -1,0 +1,57 @@
+target,prediction,candidate_count
+Claim,Evidence,18589
+Evidence,Concluding Statement,11042
+Evidence,Claim,9224
+O,Evidence,6207
+Evidence,Lead,5629
+Claim,Lead,4460
+Evidence,Counterclaim,3820
+Evidence,Rebuttal,3537
+Position,Lead,3041
+Claim,Position,2996
+Evidence,O,2949
+O,Concluding Statement,2740
+Rebuttal,Evidence,2628
+Lead,Position,2434
+O,Claim,2392
+Concluding Statement,Evidence,2353
+Counterclaim,Evidence,2296
+Evidence,Position,1830
+Lead,Evidence,1485
+O,Lead,1477
+Claim,Counterclaim,1324
+Claim,Concluding Statement,1211
+Position,Concluding Statement,1104
+Lead,Claim,1056
+Position,Claim,1053
+Rebuttal,Concluding Statement,940
+O,Position,877
+Concluding Statement,O,865
+Claim,O,857
+Position,Evidence,748
+Concluding Statement,Rebuttal,678
+Claim,Rebuttal,663
+Rebuttal,Counterclaim,519
+Counterclaim,Claim,432
+Concluding Statement,Counterclaim,407
+Counterclaim,Rebuttal,396
+Counterclaim,Concluding Statement,375
+Lead,O,355
+O,Counterclaim,296
+Lead,Counterclaim,241
+Counterclaim,Lead,213
+O,Rebuttal,197
+Rebuttal,Claim,180
+Position,O,179
+Position,Counterclaim,170
+Counterclaim,Position,141
+Concluding Statement,Claim,123
+Rebuttal,Lead,94
+Position,Rebuttal,91
+Rebuttal,Position,75
+Rebuttal,O,70
+Counterclaim,O,63
+Concluding Statement,Position,52
+Lead,Rebuttal,50
+Lead,Concluding Statement,16
+Concluding Statement,Lead,2

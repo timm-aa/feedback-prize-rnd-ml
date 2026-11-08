@@ -1,0 +1,5 @@
+{
+  "experiment": "lexical_position_balanced",
+  "criterion": "mean 3-fold validation span macro F1",
+  "config_sha256": "0e1cf611182d0edb32089baba66cfa3920b615f1e47b1adfcd9baa32e2d339e2"
+}

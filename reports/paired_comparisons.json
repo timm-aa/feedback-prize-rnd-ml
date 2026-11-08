@@ -1,0 +1,23 @@
+{
+  "lexical_minus_dummy": {
+    "delta_oof": 0.15167820103418028,
+    "paired_bootstrap_ci95": [
+      0.14898791566803224,
+      0.1544266186811308
+    ]
+  },
+  "lexical_position_minus_lexical": {
+    "delta_oof": 0.13901082998065664,
+    "paired_bootstrap_ci95": [
+      0.13658018568868777,
+      0.14152539799784583
+    ]
+  },
+  "lexical_position_balanced_minus_lexical_position": {
+    "delta_oof": 0.029686318905210174,
+    "paired_bootstrap_ci95": [
+      0.026885913248923886,
+      0.03237554424420204
+    ]
+  }
+}
