@@ -13,7 +13,7 @@ def main():
         paths.extend(sorted((root / folder).glob(pattern)))
     for filename in ["RESULTS.md", "data_audit.json", "metrics.json", "paired_comparisons.json",
                      "candidate_gold_diagnostic.json", "length_slices.json", "candidate_confusion.csv",
-                     "span_lengths.csv", "error_pairs.csv", "fold_metrics.csv", "config_resolved.json",
+                     "span_lengths.csv", "discourse_positions.csv", "error_pairs.csv", "fold_metrics.csv", "config_resolved.json",
                      "selected_model.json", "environment.json", "verification.json"]:
         paths.append(root / "reports" / filename)
     paths.extend(sorted((root / "reports" / "figures").glob("*.png")))

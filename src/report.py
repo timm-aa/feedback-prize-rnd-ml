@@ -21,6 +21,25 @@ def table(headers, rows):
     return "| " + " | ".join(headers) + " |\n| " + " | ".join(["---"] * len(headers)) + " |\n" + "\n".join("| " + " | ".join(map(str, row)) + " |" for row in rows)
 
 
+def discourse_positions(gold, docs):
+    """Aggregate gold span starts; each annotation contributes once."""
+    word_counts = docs.set_index("id").words
+    positions = gold.predictionstring.str.split().str[0].astype(int) / gold.id.map(word_counts)
+    if positions.isna().any() or not positions.between(0, 1, inclusive="left").all():
+        raise ValueError("Gold span starts must lie inside the corresponding essay")
+    bins = np.minimum((positions * 10).astype(int), 9)
+    counts = pd.crosstab(gold.discourse_type, bins).reindex(index=CLASSES, columns=range(10), fill_value=0)
+    shares = counts.div(counts.sum(axis=1), axis=0)
+    rows = []
+    for label in CLASSES:
+        values = positions.loc[gold.discourse_type == label]
+        rows.append({"class": label, "span_count": len(values),
+                     "median_relative_start": float(values.median()),
+                     "first_20_percent_share": float((values < .2).mean()),
+                     "last_20_percent_share": float((values >= .8).mean())})
+    return pd.DataFrame(rows).set_index("class"), shares
+
+
 def main():
     cfg = load("configs/baseline.json")
     root = Path(cfg["output_dir"])
@@ -31,7 +50,9 @@ def main():
     best = load(root / "selected_model.json")["experiment"]
     frame = pd.read_pickle(root / "private" / "candidates_oof.pkl")
     docs = pd.read_pickle(artifact / "documents.pkl")
-    lengths = pd.read_pickle(artifact / "span_lengths.pkl")
+    gold = pd.read_csv(Path(cfg["data_dir"]) / "train.csv")
+    position_summary, position_shares = discourse_positions(gold, docs)
+    position_summary.to_csv(root / "discourse_positions.csv")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10, "axes.spines.top": False, "axes.spines.right": False})
 
     fig, axes = plt.subplots(1, 2, figsize=(13, 4.8), constrained_layout=True)
@@ -43,6 +64,23 @@ def main():
     axes[1].set(title="Training essay lengths", xlabel="Whitespace-separated words per essay", ylabel="Number of essays")
     fig.suptitle("Feedback Prize 2021 · all 15,594 local training essays")
     fig.savefig(figures / "eda.png", dpi=150)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(11, 5.5), constrained_layout=True)
+    im = ax.imshow(position_shares.to_numpy(), vmin=0, vmax=1, cmap="Blues", aspect="auto")
+    for i in range(len(CLASSES)):
+        for j in range(10):
+            share = position_shares.iloc[i, j]
+            ax.text(j, i, f"{100 * share:.0f}%", ha="center", va="center", fontsize=9,
+                    color="white" if share > .55 else "black")
+    ax.set(xticks=range(10), xticklabels=[f"{i * 10}–{(i + 1) * 10}" for i in range(10)],
+           yticks=range(len(CLASSES)), yticklabels=CLASSES,
+           xlabel="Span start as percentage of essay word count (%)",
+           ylabel="Gold discourse type",
+           title="Where discourse spans begin · proportion within each class")
+    fig.colorbar(im, ax=ax, label="Fraction of gold spans within class (0–1)")
+    fig.suptitle(f"Source: train.csv and raw text word counts · {len(gold):,} training annotations", fontsize=10)
+    fig.savefig(figures / "discourse_positions.png", dpi=150)
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(10, 4.5), constrained_layout=True)
@@ -114,6 +152,14 @@ def main():
     diag = load(root / "candidate_gold_diagnostic.json")
     text += f'\n\nДиагностика кандидатной сегментации: если присвоить каждому кандидату истинный доминирующий класс и применить тот же decoder, span macro F1 = {diag["macro_f1"]:.4f}. Это использует gold, не является deployable-моделью или строгой верхней границей, и не участвует в выборе модели.\n'
     text += f'\nВторичная метрика выбранной модели: candidate macro F1 (8 классов, включая O) = {results[best]["candidate_macro_f1"]:.4f}, accuracy = {results[best]["candidate_accuracy"]:.4f}. Она оценивает суррогатную задачу на автоматически выделенных кандидатах, а не качество извлечения аргументов.\n\n'
+    text += "## Положение аргументов в эссе\n\n"
+    text += "Начало gold-фрагмента делится на число исходных whitespace-слов в эссе. Каждый фрагмент учитывается один раз; строки графика нормированы отдельно для каждого класса.\n\n"
+    text += table(["Класс", "Медиана начала, % длины эссе", "Начинаются в первых 20%, % фрагментов", "Начинаются в последних 20%, % фрагментов"],
+                  [[label, f'{100 * row.median_relative_start:.1f}', f'{100 * row.first_20_percent_share:.1f}', f'{100 * row.last_20_percent_share:.1f}']
+                   for label, row in position_summary.iterrows()])
+    lead, conclusion = position_summary.loc["Lead"], position_summary.loc["Concluding Statement"]
+    text += f'\n\nВ первых 20% эссе начинаются {100 * lead.first_20_percent_share:.1f}% фрагментов Lead; в последних 20% — {100 * conclusion.last_20_percent_share:.1f}% заключений. Медианы начала: {100 * lead.median_relative_start:.1f}% и {100 * conclusion.median_relative_start:.1f}% длины эссе соответственно. Это объясняет мотивацию H2; эффект признаков проверен отдельной CV-абляцией. Статистика описывает всю train-выборку и не используется для настройки модели.\n\n'
+    text += "![Положение аргументов](figures/discourse_positions.png)\n\n"
     text += "## Графики\n\n![EDA](figures/eda.png)\n\nРазмеры классов и длины эссе показывают дисбаланс и разную сложность документов.\n\n![Эксперименты](figures/experiments.png)\n\nСравнение идёт на одинаковых фолдах; ошибки на графике — std между фолдами.\n\n![Классы](figures/class_f1.png)\n\nПоклассовый F1 позволяет отделить улучшение частых типов от качества редких.\n\n![Ошибки](figures/confusion.png)\n\nМатрица относится к кандидатной классификации; ошибки границ оценивает span F1.\n"
     (root / "RESULTS.md").write_text(text, encoding="utf-8")
 
@@ -124,7 +170,6 @@ def main():
     pairs.rename("candidate_count").to_csv(root / "error_pairs.csv")
     examples = "# Три реальных OOF-ошибки (локальный файл, не публиковать)\n\n"
     examples += f"Модель: {best}. Это ошибки класса кандидата; ниже отдельно показана исходная span-разметка и предсказания.\n\n"
-    gold = pd.read_csv(Path(cfg["data_dir"]) / "train.csv")
     predictions = pd.read_csv(root / "predictions" / f"{best}_oof.csv")
     selected = []
     for wanted in [("Claim", "Evidence"), ("Rebuttal", "Counterclaim"), ("Position", "Claim")]:
@@ -146,7 +191,7 @@ def main():
                   "Position": "Позиция автора и локальный тезис похожи по формулировкам. Одна позиция в эссе не задаётся ограничением декодера, поэтому локальный классификатор может спутать их."}.get(r.target, "Ошибка локального контекста.")
         examples += f"Интерпретация (гипотеза, а не установленная причина): {reason}\n\n"
     (root / "private" / "error_examples.md").write_text(examples, encoding="utf-8")
-    print(f"Created reports/RESULTS.md, 4 figures and {len(selected)} private OOF error examples")
+    print(f"Created reports/RESULTS.md, 5 figures, position statistics and {len(selected)} private OOF error examples")
 
 
 if __name__ == "__main__":
