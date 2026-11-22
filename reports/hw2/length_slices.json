@@ -1,0 +1,58 @@
+{
+  "baseline": {
+    "short_lt250": {
+      "essays": 2919,
+      "macro_f1": 0.36216986030435144
+    },
+    "medium_250_499": {
+      "essays": 8289,
+      "macro_f1": 0.3925935451680241
+    },
+    "long_ge500": {
+      "essays": 4386,
+      "macro_f1": 0.3815014069743362
+    }
+  },
+  "context_only": {
+    "short_lt250": {
+      "essays": 2919,
+      "macro_f1": 0.38417887608433243
+    },
+    "medium_250_499": {
+      "essays": 8289,
+      "macro_f1": 0.4130556720491552
+    },
+    "long_ge500": {
+      "essays": 4386,
+      "macro_f1": 0.4046648419442103
+    }
+  },
+  "decoder_only": {
+    "short_lt250": {
+      "essays": 2919,
+      "macro_f1": 0.37038382505255985
+    },
+    "medium_250_499": {
+      "essays": 8289,
+      "macro_f1": 0.3960126081345022
+    },
+    "long_ge500": {
+      "essays": 4386,
+      "macro_f1": 0.3846444212590744
+    }
+  },
+  "context_decoder": {
+    "short_lt250": {
+      "essays": 2919,
+      "macro_f1": 0.39098924430485077
+    },
+    "medium_250_499": {
+      "essays": 8289,
+      "macro_f1": 0.41618261498392084
+    },
+    "long_ge500": {
+      "essays": 4386,
+      "macro_f1": 0.40650313095663293
+    }
+  }
+}
