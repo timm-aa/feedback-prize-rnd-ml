@@ -1,0 +1,18 @@
+{
+  "unit_tests": 12,
+  "unit_tests_passed": true,
+  "recomputed_oof_macro_f1": 0.38832929780662795,
+  "per_class_metrics_match": true,
+  "all_15594_essays_assigned_once": true,
+  "normalized_duplicate_group_disjoint": true,
+  "fold_sizes": {
+    "0": 5197,
+    "1": 5200,
+    "2": 5197
+  },
+  "all_12_fits_without_warnings": true,
+  "source_hashes_match_training_snapshot": true,
+  "submission_test_essays": 5,
+  "submission_spans": 59,
+  "private_real_error_examples": 3
+}
