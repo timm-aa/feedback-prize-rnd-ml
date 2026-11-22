@@ -1,0 +1,7 @@
+{
+  "name": "context_decoder",
+  "context": true,
+  "selective_merge": true,
+  "hypothesis": "H1+H2: совместный эффект; база для двух абляций",
+  "criterion": "maximum mean 3-fold validation span macro F1"
+}

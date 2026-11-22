@@ -1,0 +1,15 @@
+{
+  "same_split_as_hw1": true,
+  "all_essays_predicted_oof": 15594,
+  "group_disjoint_assertions_passed": true,
+  "fits": 6,
+  "experiment_fold_records": 12,
+  "hw1_baseline_oof_difference": 0.0,
+  "all_fits_without_warnings": true,
+  "independent_recomputed_metrics_match": true,
+  "all_predictions_word_indices_valid": true,
+  "training_source_hashes_match": true,
+  "logged_split_config_hashes_match": true,
+  "all_seven_classes_present_in_each_fold": true,
+  "decoder_pairs_have_identical_candidate_metrics": true
+}

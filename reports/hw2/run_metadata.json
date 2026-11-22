@@ -1,0 +1,36 @@
+{
+  "started_utc": "2026-11-22T17:09:37.701805+00:00",
+  "seed": 42,
+  "split_sha256": "6e1a5a1cac5b0abaa71e86b43a89f9f2a46e6ddba5f62c161e72d34ad6089a2d",
+  "same_split_as_hw1": true,
+  "train_csv_sha256": "c671e35b73cd5d305d04f2de5212f80d3d9ba0a7dda28df2c3e42c3b7f882898",
+  "text_manifest_sha256": "f4941287726b4dad628c6d169fad584f7d47d8cf16304a239a64157c327894cf",
+  "python": "3.9.6 (default, Dec  2 2025, 07:27:58) \n[Clang 17.0.0 (clang-1700.6.3.2)]",
+  "platform": "macOS-15.7.3-arm64-arm-64bit",
+  "versions": {
+    "numpy": "2.0.2",
+    "pandas": "2.3.3",
+    "scipy": "1.13.1",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.5.3"
+  },
+  "source_sha256": {
+    "src/__init__.py": "a8a8b1ed6e20a031b45b68417af4ce3173cbacd5e28322d72609a1ad4a2432d2",
+    "src/data.py": "10cf5b98406627a67d359d60235092dc482a3d1ae1f686451b65ae6edc3e9dca",
+    "src/evaluate.py": "17eb516d9673f79b2295698ac576caaf9ea0011d92fc6505b5152579166c0ad3",
+    "src/hw2_model.py": "5c996f354d4e16fba7f17ecf5c3ba7474457988ed7993a4d3e260ae96ef5dca1",
+    "src/hw2_predict.py": "b16476f443102d6436a936d1cde1d7297ad92842cc9efcf913330e08ac7c29f0",
+    "src/hw2_train.py": "d511ea21084db82a1dba3dffc9224d7161723204fd279e0223feba16fb8a38a3",
+    "src/metrics.py": "99e687427cea5eb5a0407abba169e74678ceedd4812fa02b60686eab3b77d070",
+    "src/model.py": "99dfc21a3742e2d452a1f619cc72ac68954de89093886a006c90077b50ce54b2",
+    "src/predict.py": "37723d651858d3665dfa5ace69815a8c5033a2aebbf36bde9467ae1ad6675557",
+    "src/report.py": "f3f53c025583bc98ea48777a45fec44ad2edd41f6afbb49036366421b899d2a9",
+    "src/train.py": "55e758aa87bf3e3068d5cfed47dc6578fd40d3b5bd96dc7999d4ace5f814aade"
+  },
+  "config_sha256": "5001a44b5914b1881d2da518a9dc4f0e99db8462dfcc0e25b82841dcfc30a315",
+  "plan_sha256": "8654f4a15b8afe0f51be39548a0d3a6b8cc652b71d7ff2c9ee52a8efe411480c",
+  "primary_metric": "span macro F1",
+  "fit_policy": "train folds only; two fits per fold reused for decoder comparisons",
+  "elapsed_seconds": 312.43092420899995,
+  "finished_utc": "2026-11-22T17:14:09.319861+00:00"
+}

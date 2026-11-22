@@ -1,0 +1,50 @@
+{
+  "data_dir": "feedback-prize-2021",
+  "output_dir": "reports/hw2",
+  "artifacts_dir": "artifacts/hw2",
+  "seed": 42,
+  "n_splits": 3,
+  "max_features": 40000,
+  "min_df": 3,
+  "ngram_range": [
+    1,
+    2
+  ],
+  "alpha": 1e-05,
+  "max_iter": 60,
+  "tol": 0.001,
+  "structure_weight": 0.5,
+  "context_weight": 0.35,
+  "selective_merge_classes": [
+    "Lead",
+    "Evidence",
+    "Concluding Statement"
+  ],
+  "bootstrap_iterations": 1000,
+  "experiments": [
+    {
+      "name": "baseline",
+      "context": false,
+      "selective_merge": false,
+      "hypothesis": "Контроль: лучшая конфигурация ДЗ1 без изменений"
+    },
+    {
+      "name": "context_only",
+      "context": true,
+      "selective_merge": false,
+      "hypothesis": "H1: контекст соседних кандидатов помогает различать риторические роли"
+    },
+    {
+      "name": "decoder_only",
+      "context": false,
+      "selective_merge": true,
+      "hypothesis": "H2: сохранение границ коротких аргументов уменьшает чрезмерное объединение"
+    },
+    {
+      "name": "context_decoder",
+      "context": true,
+      "selective_merge": true,
+      "hypothesis": "H1+H2: совместный эффект; база для двух абляций"
+    }
+  ]
+}

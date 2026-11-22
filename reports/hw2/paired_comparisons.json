@@ -1,0 +1,49 @@
+{
+  "context_only_minus_baseline": {
+    "delta_oof": 0.022262996697096527,
+    "paired_bootstrap_ci95": [
+      0.020571908668300446,
+      0.023917995042522382
+    ],
+    "interpretation": "positive"
+  },
+  "decoder_only_minus_baseline": {
+    "delta_oof": 0.004211550563826272,
+    "paired_bootstrap_ci95": [
+      0.0033557203851252828,
+      0.00498124896251181
+    ],
+    "interpretation": "positive"
+  },
+  "context_decoder_minus_baseline": {
+    "delta_oof": 0.02547283214007623,
+    "paired_bootstrap_ci95": [
+      0.023668248322101862,
+      0.027234979544779107
+    ],
+    "interpretation": "positive"
+  },
+  "context_decoder_minus_decoder_only": {
+    "delta_oof": 0.021261281576249957,
+    "paired_bootstrap_ci95": [
+      0.019787601056301493,
+      0.022740413640273256
+    ],
+    "interpretation": "positive"
+  },
+  "context_decoder_minus_context_only": {
+    "delta_oof": 0.0032098354429797027,
+    "paired_bootstrap_ci95": [
+      0.0022701942593755437,
+      0.004172658536884235
+    ],
+    "interpretation": "positive"
+  },
+  "interaction": {
+    "delta_oof": -0.001001715120846569,
+    "paired_bootstrap_ci95": [
+      -0.0016840391669704288,
+      -0.00031603320437152314
+    ]
+  }
+}
