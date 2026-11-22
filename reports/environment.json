@@ -1,0 +1,22 @@
+{
+  "python": "3.9.6 (default, Dec  2 2025, 07:27:58) \n[Clang 17.0.0 (clang-1700.6.3.2)]",
+  "platform": "macOS-15.7.3-arm64-arm-64bit",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "scikit-learn": "1.6.1",
+  "scipy": "1.13.1",
+  "matplotlib": "3.9.4",
+  "joblib": "1.5.3",
+  "threadpoolctl": "3.6.0",
+  "elapsed_seconds": 316.63305070800004,
+  "source_sha256": {
+    "src/__init__.py": "a8a8b1ed6e20a031b45b68417af4ce3173cbacd5e28322d72609a1ad4a2432d2",
+    "src/data.py": "10cf5b98406627a67d359d60235092dc482a3d1ae1f686451b65ae6edc3e9dca",
+    "src/evaluate.py": "17eb516d9673f79b2295698ac576caaf9ea0011d92fc6505b5152579166c0ad3",
+    "src/metrics.py": "99e687427cea5eb5a0407abba169e74678ceedd4812fa02b60686eab3b77d070",
+    "src/model.py": "99dfc21a3742e2d452a1f619cc72ac68954de89093886a006c90077b50ce54b2",
+    "src/predict.py": "37723d651858d3665dfa5ace69815a8c5033a2aebbf36bde9467ae1ad6675557",
+    "src/report.py": "fa299a46d71c68a01167b095b0ac22181c1d558ce9b24b42114e899cb126caaa",
+    "src/train.py": "55e758aa87bf3e3068d5cfed47dc6578fd40d3b5bd96dc7999d4ace5f814aade"
+  }
+}
